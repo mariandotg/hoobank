@@ -17,5 +17,5 @@ export interface Entry<T> {
 }
 
 export interface BaseEntry<T> {
-  items: Entry<T>[]
+  items: Entry<T>
 }
