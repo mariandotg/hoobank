@@ -11,7 +11,7 @@ const getEntries = async (contentType: string) => {
     include: 1,
   })
 
-  return entries
+  return entries.items
 }
 
 const contentful = {
