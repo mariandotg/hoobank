@@ -1,6 +1,7 @@
 export * from './asset.model'
 export * from './client.model'
 export * from './contentful.model'
+export * from './data.model'
 export * from './feature.model'
 export * from './feedback.model'
 export * from './footerLink.model'
