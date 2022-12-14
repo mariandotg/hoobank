@@ -5,6 +5,6 @@ export interface Feedback {
   name: string
   title: string
   content: string
-  img: Entry<Asset>
+  image: Entry<Asset>
   id: string
 }

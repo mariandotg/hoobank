@@ -4,6 +4,6 @@ import { Entry } from './contentful.model'
 export interface Feature {
   title: string
   content: string
-  icon: Entry<Asset>
+  image: Entry<Asset>
   id: string
 }

@@ -3,6 +3,6 @@ import { Entry } from './contentful.model'
 
 export interface SocialMedia {
   id: string
-  icon: Entry<Asset>
+  image: Entry<Asset>
   link: string
 }
