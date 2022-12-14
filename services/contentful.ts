@@ -1,3 +1,7 @@
+import contentfulDataAdapter from '../adapters/contentfulDataAdapter'
+
+import { Data } from '../models'
+
 const contentfulSDK = require('contentful')
 
 const client = contentfulSDK.createClient({
@@ -14,8 +18,30 @@ const getEntries = async (contentType: string) => {
   return entries.items
 }
 
+const getContentfulContent = async () => {
+  const keys = [
+    'navLink',
+    'feature',
+    'feedback',
+    'stat',
+    'footerLink',
+    'socialMedia',
+    'client',
+  ]
+
+  const data: Partial<Data> = {}
+
+  for (const key of keys) {
+    const entry = await getEntries(key)
+    const formattedEntry = contentfulDataAdapter(entry)
+    data[key] = formattedEntry
+  }
+
+  return data
+}
+
 const contentful = {
-  getEntries,
+  getContentfulContent,
 }
 
 export default contentful
