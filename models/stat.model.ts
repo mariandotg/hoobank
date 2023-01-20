@@ -3,3 +3,7 @@ export interface Stat {
   value: string
   id: string
 }
+
+export interface StatFormatted extends Stat {
+  uniqueId: string
+}

@@ -27,3 +27,7 @@ export type Asset = {
   title: string
   image: Entry<Image>
 }
+
+export type AssetsFormatted = {
+  [key: string]: Image
+}

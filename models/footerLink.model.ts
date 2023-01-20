@@ -9,3 +9,8 @@ export interface FooterLink {
   title: string
   links: Entry<ILink>[]
 }
+
+export interface FooterLinkFormatted extends Omit<FooterLink, 'links'> {
+  links: ILink[]
+  uniqueId: string
+}
