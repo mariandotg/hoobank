@@ -3,11 +3,15 @@ import Image from 'next/image'
 import { File, NavLinkFormatted } from '../models'
 
 interface Props {
+  menuFile: File
+  closeFile: File
   logoFile: File
   navLinks: NavLinkFormatted[]
 }
 
-const Navbar = ({ logoFile, navLinks }: Props) => {
+const Navbar = ({ logoFile, menuFile, closeFile, navLinks }: Props) => {
+  const [toggle, setToggle] = React.useState(false)
+
   return (
     <nav className='flex items-center justify-between w-full py-6 navbar'>
       <Image
@@ -29,6 +33,34 @@ const Navbar = ({ logoFile, navLinks }: Props) => {
           </li>
         ))}
       </ul>
+      <div className='sm:hidden flex flex-1 justify-end items-center'>
+        <Image
+          src={`https:${toggle ? closeFile.url : menuFile.url}`}
+          className='object-contain'
+          alt='Menu'
+          width={28}
+          height={28}
+          onClick={() => setToggle((prev) => !prev)}
+        />
+        <div
+          className={`${
+            toggle ? 'flex' : 'hidden'
+          } p-6 bg-black-gradient absolute top-16 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
+        >
+          <ul className='list-none flex flex-col justify-end items-center flex-1'>
+            {navLinks.reverse().map((nav: NavLinkFormatted, index: number) => (
+              <li
+                key={nav.id}
+                className={`font-normal cursor-pointer text-[16px] text-white font-poppins ${
+                  index === navLinks.length - 1 ? 'mb-0' : 'mb-4'
+                }`}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </nav>
   )
 }
