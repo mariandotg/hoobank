@@ -26,7 +26,7 @@ const Home: NextPage<Props> = ({ data }) => {
     <div className='w-full overflow-hidden bg-primary'>
       <div className='paddingX flexCenter'>
         <div className='boxWidth'>
-          <Navbar logoFile={data.assets.logo.file} />
+          <Navbar logoFile={data.assets.logo.file} navLinks={data.navLinks} />
         </div>
       </div>
       <div className='bg-primary flexStart'>
