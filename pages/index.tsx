@@ -2,16 +2,50 @@ import type { NextPage } from 'next'
 
 import contentful from '../services/contentful'
 
-import { Data } from '../models'
+import { DataFormatted } from '../models'
+
+import {
+  Billing,
+  Business,
+  CardDeal,
+  Clients,
+  CTA,
+  Footer,
+  Hero,
+  Navbar,
+  Stats,
+  Testimonials,
+} from '../components'
 
 interface Props {
-  data: Data
+  data: DataFormatted
 }
 
 const Home: NextPage<Props> = ({ data }) => {
   return (
-    <div>
-      <p className='text-red-500'>App</p>
+    <div className='w-full overflow-hidden bg-primary'>
+      <div className='paddingX flexCenter'>
+        <div className='boxWidth'>
+          <Navbar />
+        </div>
+      </div>
+      <div className='bg-primary flexStart'>
+        <div className='boxWidth'>
+          <Hero />
+        </div>
+      </div>
+      <div className='bg-primary paddingX flexStart'>
+        <div className='boxWidth'>
+          <Stats />
+          <Business />
+          <Billing />
+          <CardDeal />
+          <Testimonials />
+          <Clients />
+          <CTA />
+          <Footer />
+        </div>
+      </div>
     </div>
   )
 }
