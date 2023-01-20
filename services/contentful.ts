@@ -1,6 +1,9 @@
+import contentfulAssetsAdapter from '../adapters/contentfulAssetsAdapter'
 import contentfulDataAdapter from '../adapters/contentfulDataAdapter'
 
-import { Data } from '../models'
+import keys from '../keys'
+
+import { Asset, Content, DataFormatted, Entry } from '../models'
 
 const contentfulSDK = require('contentful')
 
@@ -19,25 +22,17 @@ const getEntries = async (contentType: string) => {
 }
 
 const getContentfulContent = async () => {
-  const keys = [
-    'navLink',
-    'feature',
-    'feedback',
-    'stat',
-    'footerLink',
-    'socialMedia',
-    'client',
-  ]
-
-  const data: Partial<Data> = {}
+  const data: Partial<DataFormatted> = {}
 
   for (const key of keys) {
-    const entry = await getEntries(key)
-    const formattedEntry = contentfulDataAdapter(entry)
-    data[key] = formattedEntry
+    const entry: Entry<Content>[] = await getEntries(key[0])
+    const formattedEntry =
+      key[0] === 'asset'
+        ? contentfulAssetsAdapter(entry as Entry<Asset>[])
+        : contentfulDataAdapter(entry)
+    data[key[1]] = formattedEntry
   }
-
-  return data
+  return data as DataFormatted
 }
 
 const contentful = {
