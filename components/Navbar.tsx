@@ -33,7 +33,7 @@ const Navbar = ({ navLinks }: Props) => {
       </ul>
       <div className='sm:hidden flex flex-1 justify-end items-center'>
         <Image
-          src={`https:${toggle ? close : menu}`}
+          src={toggle ? close : menu}
           className='object-contain'
           alt='Menu'
           width={28}
