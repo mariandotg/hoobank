@@ -1,21 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
-import { File, NavLinkFormatted } from '../models'
+import { NavLinkFormatted } from '../models'
+import { close, logo, menu } from '../assets'
 
 interface Props {
-  menuFile: File
-  closeFile: File
-  logoFile: File
   navLinks: NavLinkFormatted[]
 }
 
-const Navbar = ({ logoFile, menuFile, closeFile, navLinks }: Props) => {
+const Navbar = ({ navLinks }: Props) => {
   const [toggle, setToggle] = React.useState(false)
 
   return (
     <nav className='flex items-center justify-between w-full py-6 navbar'>
       <Image
-        src={`https:${logoFile.url}`}
+        src={logo}
         alt='Hoobank logo'
         priority={true}
         width={124}
@@ -35,7 +33,7 @@ const Navbar = ({ logoFile, menuFile, closeFile, navLinks }: Props) => {
       </ul>
       <div className='sm:hidden flex flex-1 justify-end items-center'>
         <Image
-          src={`https:${toggle ? closeFile.url : menuFile.url}`}
+          src={`https:${toggle ? close : menu}`}
           className='object-contain'
           alt='Menu'
           width={28}
